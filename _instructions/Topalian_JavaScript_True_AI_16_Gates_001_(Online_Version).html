@@ -1,0 +1,1243 @@
+<!-- Dedicated to God the Father -->
+
+<!-- All Rights Reserved Christopher Topalian Copyright 2000-2024-->
+
+<!-- https://github.com/ChristopherTopalian -->
+
+<!-- https://github.com/ChristopherAndrewTopalian -->
+
+<!-- Topalian_JavaScript_True_AI_16_Gates.html -->
+
+<!-- Version 001 - (2024-03-07) -->
+
+<html>
+<head>
+<title> Topalian JavaScript True AI 16 Gates </title>
+
+<style>
+
+/* Dedicated to God the Father */
+
+/* All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024 */
+
+/* https://github.com/ChristopherTopalian */
+
+/* https://github.com/ChristopherAndrewTopalian */
+
+/* style001.css */
+
+body
+{
+    background-color: rgb(40, 40, 40);
+    color: rgb(255, 255, 255);
+    overflow: none;
+}
+
+a
+{
+    text-decoration: none;
+    color: rgb(100, 100, 100);
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+pre
+{
+    font-size: 20px;
+}
+
+b
+{
+    color: rgb(0, 255, 255);
+}
+
+.buttonContainer
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.square
+{
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 5px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 0px;
+}
+
+.square:hover
+{
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.square:active
+{
+    cursor: grabbing;
+}
+
+.buttonDivCircle
+{
+    background-color: rgb(0, 0, 0);
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4.2px;
+    padding-bottom: 4px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.buttonDivCircle:hover
+{
+    border-color: rgb(0, 255, 255);
+    cursor: pointer;
+}
+
+.buttonDivCircle:active
+{
+    border-color: rgb(0, 255, 255);
+    border-width: 4px;
+    color: rgb(0, 255, 255);
+    cursor: grabbing;
+}
+
+</style>
+
+<script>
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// shortcuts.js
+
+function ge(whichId)
+{
+    let result = document.getElementById(whichId);
+
+    return result;
+}
+
+function ce(whichType)
+{
+    let result = document.createElement(whichType);
+
+    return result;
+}
+
+function ba(whichElement)
+{
+    let result = document.body.append(whichElement);
+
+    return result;
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// worldVariables.js
+
+let online = true;
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// logicGates.js
+
+let logicGates =
+[
+    {
+        name: "And",
+        abbreviation: 'AND',
+        imgSrcOffline: 'media/textures/topalianDiagrams/and.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/and_orig.png',
+        function: "gateAnd(a, b)",
+        formula: "if (a == 1 && b == 1)",
+        opposite: "Nand",
+        truthTable: "0001",
+        order: 7,
+        truthTableFormatted: `
+        A  B
+        0  0  =  0
+        0  1  =  0
+        1  0  =  0
+        1  1  =  1
+        `
+    },
+
+    {
+        name: "Nand",
+        abbreviation: 'NAND',
+        imgSrcOffline: 'media/textures/topalianDiagrams/nand.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/nand_orig.png',
+        function: "gateNand(a, b)",
+        formula: "if (a == 0 || b == 0)",
+        opposite: "And",
+        truthTable: "1110",
+        order: 10,
+        truthTableFormatted: `
+        A  B
+        0  0  =  1
+        0  1  =  1
+        1  0  =  1
+        1  1  =  0
+        `
+    },
+
+    {
+        name: "Or",
+        abbreviation: 'OR',
+        imgSrcOffline: 'media/textures/topalianDiagrams/or.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/or_orig.png',
+        function: "gateOr(a, b)",
+        formula: "if (a == 1 || b == 1)",
+        opposite: "Nor",
+        truthTable: "0111",
+        order: 13,
+        truthTableFormatted: `
+        A  B
+        0  0  =  0
+        0  1  =  1
+        1  0  =  1
+        1  1  =  1
+        `
+    },
+
+    {
+        name: "Nor",
+        abbreviation: 'NOR',
+        imgSrcOffline: 'media/textures/topalianDiagrams/nor.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/nor_orig.png',
+        function: "gateNor(a, b)",
+        formula: "if (a == 0 && b == 0)",
+        opposite: "Or",
+        truthTable: "1000",
+        truthTableFormatted: `
+        A  B
+        0  0  =  1
+        0  1  =  0
+        1  0  =  0
+        1  1  =  0
+        `
+    },
+
+    {
+        name: "Xor",
+        abbreviation: 'XOR',
+        imgSrcOffline: 'media/textures/topalianDiagrams/xor.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/xor_orig.png',
+        function: "gateXor(a, b)",
+        formula: "if ((a == 1 && b == 0) || (a == 0 && b == 1))",
+        opposite: "Xnor",
+        truthTable: "0110",
+        truthTableFormatted: `
+        A  B
+        0  0  =  0
+        0  1  =  1
+        1  0  =  1
+        1  1  =  0
+        `
+    },
+
+    {
+        name: "Xnor",
+        abbreviation: 'XNOR',
+        imgSrcOffline: 'media/textures/topalianDiagrams/xnor.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/xnor_orig.png',
+        function: "gateXnor(a, b)",
+        formula: "if ((a == 0 && b == 0) || (a == 1 && b == 1))",
+        opposite: "Xor",
+        truthTable: "1001",
+        truthTableFormatted: `
+        A  B
+        0  0  =  1
+        0  1  =  0
+        1  0  =  0
+        1  1  =  1
+        `
+    },
+
+    {
+        name: "Converse Implication",
+        abbreviation: 'Ci',
+        imgSrcOffline: 'media/textures/topalianDiagrams/converse_implication.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/converse-implication_orig.png',
+        function: "gateCi(a, b)",
+        formula: "if (a == 1 || b == 0)",
+        opposite: "Converse NonImplication",
+        truthTable: "1011",
+        truthTableFormatted: `
+        A  B
+        0  0  =  1
+        0  1  =  0
+        1  0  =  1
+        1  1  =  1
+        `
+    },
+
+    {
+        name: "Converse NonImplication",
+        abbreviation: 'CNi',
+        imgSrcOffline: 'media/textures/topalianDiagrams/converse_non_implication.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/converse-non-implication_orig.png',
+        function: "gateCni(a, b)",
+        formula: "if (a == 0 && b == 1)",
+        opposite: "Converse Implication",
+        truthTable: "0100",
+        truthTableFormatted: `
+        A  B
+        0  0  =  0
+        0  1  =  1
+        1  0  =  0
+        1  1  =  0
+        `
+    },
+
+    {
+        name: "Material Implication",
+        abbreviation: 'Mi',
+        imgSrcOffline: 'media/textures/topalianDiagrams/material_implication.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/material-implication_orig.png',
+        function: "gateMi(a, b)",
+        formula: "if (a == 0 || b == 1)",
+        opposite: "Material NonImplication",
+        truthTable: "1101",
+        truthTableFormatted: `
+        A  B
+        0  0  =  1
+        0  1  =  1
+        1  0  =  0
+        1  1  =  1
+        `
+    },
+
+    {
+        name: "Material NonImplication",
+        abbreviation: 'MNi',
+        imgSrcOffline: 'media/textures/topalianDiagrams/material_non_implication.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/material-non-implication_orig.png',
+        function: "gateMni(a, b)",
+        formula: "if (a == 1 && b == 0)",
+        opposite: "Material Implication",
+        truthTable: "0010",
+        truthTableFormatted: `
+        A  B
+        0  0  =  0
+        0  1  =  0
+        1  0  =  1
+        1  1  =  0
+        `
+    },
+
+    {
+        name: "Right Projection",
+        abbreviation: 'RP',
+        imgSrcOffline: 'media/textures/topalianDiagrams/right_projection.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/right-projection_orig.png',
+        function: "gateRp(a, b)",
+        formula: "if ((a == 0 && b == 1) || (a == 1 && b == 1))",
+        opposite: "Right Complementation",
+        truthTable: "0101",
+        truthTableFormatted: `
+        A  B
+        0  0  =  0
+        0  1  =  1
+        1  0  =  0
+        1  1  =  1
+        `
+    },
+
+    {
+        name: "Right Complementation",
+        abbreviation: 'RC',
+        imgSrcOffline: 'media/textures/topalianDiagrams/right_complementation.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/right-complementation_orig.png',
+        function: "gateRc(a, b)",
+        formula: "if ((a == 0 && b == 0) || (a == 1 && b == 0))",
+        opposite: "Right Projection",
+        truthTable: "1010",
+        truthTableFormatted: `
+        A  B
+        0  0  =  1
+        0  1  =  0
+        1  0  =  1
+        1  1  =  0
+        `
+    },
+
+    {
+        name: "Left Projection",
+        abbreviation: 'LP',
+        imgSrcOffline: 'media/textures/topalianDiagrams/left_projection.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/left-projection_orig.png',
+        function: "gateLp(a, b)",
+        formula: "if (a == 1)",
+        opposite: "Left Complementation",
+        truthTable: "0011",
+        truthTableFormatted: `
+        A  B
+        0  0  =  0
+        0  1  =  0
+        1  0  =  1
+        1  1  =  1
+        `
+    },
+
+    {
+        name: "Left Complementation",
+        abbreviation: 'LC',
+        imgSrcOffline: 'media/textures/topalianDiagrams/left_complementation.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/left-complementation_orig.png',
+        function: "gateLc(a, b)",
+        formula: "if (a == 0)",
+        opposite: "Left Projection",
+        truthTable: "1100",
+        truthTableFormatted: `
+        A  B
+        0  0  =  1
+        0  1  =  1
+        1  0  =  0
+        1  1  =  0
+        `
+    },
+
+    {
+        name: "Tautology",
+        abbreviation: 'TAU',
+        imgSrcOffline: 'media/textures/topalianDiagrams/tautology.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/tautology_orig.png',
+        function: "gateTautology(a, b)",
+        formula: "if ((a == 0 && b == 0) || (a == 0 && b == 1) || (a == 1 && b == 0) || (a == 1 && b == 1))",
+        opposite: "Contradiction",
+        truthTable: "1111",
+        order: 6,
+        truthTableFormatted: `
+        A  B
+        0  0  =  1
+        0  1  =  1
+        1  0  =  1
+        1  1  =  1
+        `
+    },
+
+    {
+        name: "Contradiction",
+        abbreviation: 'CON',
+        imgSrcOffline: 'media/textures/topalianDiagrams/contradiction.png',
+        imgSrcOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/contradiction_orig.png',
+        function: "gateContradiction(a, b)",
+        formula: "if ((a == 0 && b == 0) ||  (a == 0 && b == 1) || (a == 1 && b == 0) || (a == 1 && b == 1))",
+        opposite: "Tautology",
+        truthTable: "0000",
+        order: 8,
+        truthTableFormatted: `
+        A  B
+        0  0  =  0
+        0  1  =  0
+        1  0  =  0
+        1  1  =  0
+        `
+    }
+];
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// sortedArray.js
+
+let sortedArray =
+[
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Tautology';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Converse Implication';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Xnor';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Right Projection';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Nor';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Left Complementation';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Nand';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Material NonImplication';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Contradiction';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Converse NonImplication';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Xor';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Right Complementation';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Or';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Left Projection';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'And';
+    }),
+
+    logicGates.find(function(gate)
+    {
+        return gate.name === 'Material Implication';
+    })
+];
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// logicGateFunctions.js
+
+function gateAnd(a, b)
+{
+    if (a == 1 && b == 1)
+    {
+        return "Both True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateNand(a, b)
+{
+    /*
+    if ((a == 0 && b == 0) ||
+        (a == 1 && b == 0) ||
+        (a == 0 && b == 1))
+    */
+
+    if (a == 0 || b == 0)
+    {
+        return "Both False or A True or B True"
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateOr(a, b)
+{
+    /*
+    if ((a == 1 && b == 0) ||
+        (a == 0 && b == 1) ||
+        (a == 1 && b == 1))
+    */
+
+    if (a == 1 || b == 1)
+    {
+        return "One or Both True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateNor(a, b)
+{
+    if (a == 0 && b == 0)
+    {
+        return "Both False";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateXor(a, b)
+{
+    if ((a == 1 && b == 0) ||
+        (a == 0 && b == 1))
+    {
+        return "A True or B True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateXnor(a, b)
+{
+    if ((a == 0 && b == 0) ||
+        (a == 1 && b == 1))
+    {
+        return "Both False or Both True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateCi(a, b)
+{
+    /*
+    if ((a == 0 && b == 0) ||
+        (a == 1 && b == 0) ||
+        (a == 1 && b == 1))
+    */
+
+    if (a == 1 || b == 0)
+    {
+        return "Both False or A True or Both True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateCni(a, b)
+{
+    if (a == 0 && b == 1)
+    {
+        return "B True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateMi(a, b)
+{
+    /*
+    if ((a == 0 && b == 0) ||
+        (a == 0 && b == 1) ||
+        (a == 1 && b == 1))
+    */
+
+    if (a == 0 || b == 1)
+    {
+        return "Both False or B True or Both True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateMni(a, b)
+{
+    if (a == 1 && b == 0)
+    {
+        return "A True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateRp(a, b)
+{
+    if ((a == 0 && b == 1) ||
+        (a == 1 && b == 1))
+    {
+        return "B True or Both True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateRc(a, b)
+{
+    if ((a == 0 && b == 0) ||
+        (a == 1 && b == 0))
+    {
+        return "Both False or A True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateLp(a, b)
+{
+    /*
+    if ((a == 1 && b == 0) ||
+        (a == 1 && b == 1))
+    */
+
+    if (a == 1)
+    {
+        return "A True or Both True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateLc(a, b)
+{
+    /*
+    if ((a == 0 && b == 0) ||
+        (a == 0 && b == 1))
+    */
+
+    if (a == 0)
+    {
+        return "Both False or B True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateTautology(a, b)
+{
+    if ((a == 0 && b == 0) ||
+        (a == 0 && b == 1) ||
+        (a == 1 && b == 0) ||
+        (a == 1 && b == 1))
+    {
+        return "One or Both False or True";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function gateContradiction(a, b)
+{
+    if ((a == 0 && b == 0) ||
+        (a == 0 && b == 1) ||
+        (a == 1 && b == 0) ||
+        (a == 1 && b == 1))
+    {
+        return "One or Both False or True. Negative Message is placed here, or we can leave it blank";
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// logicGatesCheckInputs.js
+
+let timerAi;
+
+function logicGatesCheckInputs()
+{
+    timerAi = setInterval(function()
+    {
+        let a = ge('inputA').innerHTML;
+
+        let b = ge('inputB').innerHTML;
+
+        gateAnd(a, b);
+        gateNand(a, b);
+
+        gateOr(a, b);
+        gateNor(a, b);
+
+        gateXor(a, b);
+        gateXnor(a, b);
+
+        gateCi(a, b);
+        gateCNi(a, b);
+
+        gateMi(a, b);
+        gateMNi(a, b);
+
+        gateRP(a, b);
+        gateRC(a, b);
+
+        gateLP(a, b);
+        gateLC(a, b);
+
+        gateTautology(a, b);
+        gateContradiction(a, b);
+    }, 100);
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// makeAppButton.js
+
+function makeAppButton()
+{
+    // buttonContainer
+    let buttonContainer = ce('div');
+    buttonContainer.id = 'buttonContainer';
+    buttonContainer.className = 'buttonContainer';
+    buttonContainer.style.position = 'absolute';
+    buttonContainer.style.left = '100px';
+    buttonContainer.style.top = '100px';
+    ba(buttonContainer);
+
+    //-//
+
+    // buttonDivCircle
+    let buttonDivCircle = ce('button');
+    buttonDivCircle.innerHTML = 'O';
+    buttonDivCircle.id = 'buttonDivCircle';
+    buttonDivCircle.className = 'buttonDivCircle';
+    buttonDivCircle.onclick = function()
+    {
+        audioPlay('sfx_blip_001', 1.0);
+
+        if (ge('circleContainer'))
+        {
+            ge('circleContainer').remove();
+            ge('marker').remove();
+            ge('inputA').remove();
+            ge('inputB').remove();
+        }
+        else
+        {
+            makeInputVariables();
+
+            makeCircleOfDivs(sortedArray);
+
+            setTimeout(function()
+            {
+                makeCenterPoint();
+            }, 1000);
+        }
+    };
+    buttonContainer.append(buttonDivCircle);
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// makeCenterPoint.js
+
+function makeCenterPoint()
+{
+    let marker = ce('div');
+    marker.innerHTML = 'O';
+    marker.id = 'marker';
+    marker.style.position = 'absolute';
+    marker.style.left = 320 + 'px';
+    marker.style.top = 215 + 'px';
+    marker.style.zIndex = 2;
+    ba(marker);
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// makeCircleOfDivs.js
+
+function makeCircleOfDivs(whichArray)
+{
+    // circleContainer
+    let circleContainer = ce('div');
+    circleContainer.id = 'circleContainer';
+    ba(circleContainer);
+
+    //-//
+
+    // infoDiv
+    let infoDiv = ce('div');
+    infoDiv.id = 'infoDiv';
+    infoDiv.className = 'infoDiv';
+    infoDiv.style.position = 'absolute';
+    infoDiv.style.left = ge('buttonContainer').getBoundingClientRect().x + 420;
+    infoDiv.style.top = ge('buttonContainer').getBoundingClientRect().y + -40;
+    infoDiv.style.margin = '30px';
+    circleContainer.append(infoDiv);
+
+    let radius = 150;
+
+    let centerX = ge('buttonContainer').getBoundingClientRect().x + 200;
+
+    let centerY = ge('buttonContainer').getBoundingClientRect().y + 100;
+
+    //-//
+
+    for (let i = 0; i < whichArray.length; i++)
+    {
+        let angle = (Math.PI * 2) / whichArray.length * i - Math.PI / 2;
+
+        let x = centerX + radius * Math.cos(angle);
+
+        let y = centerY + radius * Math.sin(angle);
+
+        //-//
+
+        // square
+        let square = ce('div');
+        square.title = whichArray[i].name;
+        square.id = 'square' + i;
+        square.className = 'square';
+        square.style.position = 'absolute';
+        square.style.left = x + 'px';
+        square.style.top = y + 'px';
+        square.style.width = '45px';
+        square.style.height = '45px';
+        square.style.backgroundColor = 'rgb(0, 0, 0)';
+
+        //-//
+
+        // nameOfGate
+        let nameOfGate = ce('div');
+        nameOfGate.innerHTML = whichArray[i].abbreviation;
+        nameOfGate.style.position = 'relative';
+        nameOfGate.style.zIndex = '2';
+        nameOfGate.style.fontWeight = 'bold';
+        square.append(nameOfGate);
+
+        // onclick
+        square.onclick = function()
+        {
+            audioPlay('sfx_blip_001', 1.0);
+
+            ge('infoDiv').innerHTML = whichArray[i].abbreviation.bold() + '<br>' +
+            whichArray[i].name +
+            '<br>' +
+            whichArray[i].formula.bold() +
+            '<br>' + 
+            whichArray[i].truthTable +
+            '<br>' +'<pre>'+whichArray[i].truthTableFormatted +
+            '</pre>' + 'Opposite is: ' +
+            whichArray[i].opposite +
+            '<br>';
+
+            ge('square' + i).style.color = 'rgb(255, 0, 255)';
+        };
+
+        // onmouseover
+        square.onmouseover = function()
+        {
+            audioPlay('sfx_warp_001', 1.0);
+
+            square.style.borderColor = 'rgb(0, 255, 255)';
+            square.style.color = 'rgb(0, 255, 255)';
+        };
+
+        // onmouseout
+        square.onmouseout = function()
+        {
+            square.style.borderColor = 'rgb(255, 255, 255)';
+            square.style.color = 'rgb(255, 255, 255)';
+        };
+        circleContainer.append(square);
+
+        //-//
+
+        let topalianDiagram = ce('img');
+        topalianDiagram.style.maxWidth = '100%';
+        topalianDiagram.style.height = 'auto';
+        if (online == false)
+        {
+            topalianDiagram.src = whichArray[i].imgSrcOffline;
+        }
+        else
+        {
+            topalianDiagram.src = whichArray[i].imgSrcOnline;
+        }
+        square.append(topalianDiagram);
+    }
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// makeInputVariables.js
+
+function makeInputVariables()
+{
+    let inputA = ce('div');
+    inputA.innerHTML = Math.round(Math.random());
+    inputA.id = 'inputA';
+    inputA.style.position = 'absolute';
+    inputA.style.left = 310 + 'px';
+    inputA.style.top = 170 + 'px';
+    inputA.style.zIndex = 2;
+    ba(inputA);
+
+    //-//
+
+    let inputB = ce('div');
+    inputB.innerHTML = Math.round(Math.random());
+    inputB.id = 'inputB';
+    inputB.style.position = 'absolute';
+    inputB.style.left = 335 + 'px';
+    inputB.style.top = 170 + 'px';
+    inputB.style.zIndex = 2;
+    ba(inputB);
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// makeTitleOfApp.js
+
+function makeTitleOfApp()
+{
+    let titleContainer = document.createElement('div');
+    titleContainer.style.position = 'absolute';
+    titleContainer.style.right = '10px';
+    titleContainer.style.top = '5px';
+    titleContainer.style.zIndex = 1;
+    titleContainer.style.fontWeight = 'bold';
+    ba(titleContainer);
+
+    //-//
+
+    let titleTextDiv = document.createElement('div');
+    titleTextDiv.innerHTML =
+    `<a href = 'https://github.com/christophertopalian/Topalian_JavaScript_True_AI_16_Gates' target = '_blank'>Topalian JavaScript True AI 16 Gates</a>`;
+    titleTextDiv.style.fontSize = '15px';
+    titleTextDiv.style.color = 'rgb(120, 120, 120)';
+    titleContainer.append(titleTextDiv);
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// randomInputs.js
+
+let timer001;
+
+function randomInputs()
+{
+    timer001 = setInterval(function()
+    {
+        ge('inputA').innerHTML = Math.round(Math.random());
+
+        ge('inputB').innerHTML = Math.round(Math.random());
+    }, 100);
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// audioPlay.js
+
+function audioPlay(whichId, whichVolume)
+{
+    if (ge(whichId))
+    {
+        ge(whichId).volume = whichVolume;
+        ge(whichId).play();
+    }
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// dataSounds.js
+
+let sounds =
+[
+    {
+        name: 'sfx_blip_001',
+        soundFileOffline: 'media/sounds/sfx_blip_001.mp4',
+        soundFileOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/sfx_blip_001.mp4'
+    },
+
+    {
+        name: 'sfx_warp_001',
+        soundFileOffline: 'media/sounds/sfx_warp_001.mp3',
+        soundFileOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/sfx_warp_001.mp4'
+    }
+];
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// loadSounds.js
+
+function loadSounds(whichArray)
+{
+    for (let x = 0; x < whichArray.length; x++)
+    {
+        let theSound = ce('audio');
+        if (online == false)
+        {
+            theSound.src = whichArray[x].soundFileOffline;
+        }
+        else
+        {
+            theSound.src = whichArray[x].soundFileOnline;
+        }
+        theSound.id = whichArray[x].name;
+        theSound.loop = false;
+        theSound.volume = 1.0;
+        ba(theSound);
+    }
+}
+
+// Dedicated to God the Father
+
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+
+// https://github.com/ChristopherTopalian
+
+// https://github.com/ChristopherAndrewTopalian
+
+// whenLoaded.js
+
+function whenLoaded()
+{
+    loadSounds(sounds);
+
+    makeAppButton();
+
+    makeTitleOfApp();
+
+    setTimeout(function()
+    {
+        randomInputs();
+    }, 1000);
+}
+
+</script>
+
+</head>
+
+<body onload = 'whenLoaded();'>
+
+</body>
+
+</html>
+
